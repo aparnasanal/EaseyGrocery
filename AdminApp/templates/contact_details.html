@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'dashboard.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Categories</title>
+</head>
+<body>
+<div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Category Details</h4>
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>MESSAGE</th>
+<!--                            <th>OPTIONS</th>-->
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in contact %}
+                        <tr>
+                            <td>{{ i.Name }}</td>
+                            <td>{{ i.Email }}</td>
+                            <td>{{i.Message}}</td>
+<!--                        <td><a class="btn btn-primary" style="margin-right: 20px;" href="{% url 'edit_category' cat_id=i.id %}" >Edit</a>-->
+<!--                            <a class="btn btn-danger" href="{% url 'delete_category' c_id=i.id %}">Delete</a></td>-->
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Wellness Login</title>
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+</head>
+<body>
+    <div class="nature-background">
+        <div class="floating-leaf leaf-1"></div>
+        <div class="floating-leaf leaf-2"></div>
+        <div class="floating-leaf leaf-3"></div>
+        <div class="floating-leaf leaf-4"></div>
+    </div>
+
+    <div class="login-container">
+        <div class="wellness-card">
+            <div class="organic-border"></div>
+
+            <div class="mindful-header">
+                <div class="zen-logo">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="26" stroke="currentColor" stroke-width="2" fill="none" opacity="0.6"/>
+                        <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.8"/>
+                        <circle cx="28" cy="28" r="10" fill="currentColor" opacity="0.9"/>
+                        <path d="M28 18v20M18 28h20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <div class="zen-glow"></div>
+                </div>
+                <h1>Sign Up</h1>
+                <p>Welcome to <b>EasyGrocery!</b></p>
+            </div>
+
+            <form method="post" class="harmony-form" onsubmit="return user_validation()"     novalidate action="{% url 'save_user' %}">
+                {% csrf_token %}
+                <div>
+                    <div class="organic-field">
+                    <div class="field-nature"></div>
+                    <input type="text"  name="uname" id="username" required autocomplete="username">
+                    <label >Username</label>
+                    <div class="growth-indicator">
+                        <div class="leaf-sprout"></div>
+                    </div>
+                </div>
+                    <div style="margin-top: -30px; margin-left: 10px;">
+                         <span style="color: red;" id="userError"></span><br><br>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="organic-field">
+                    <div class="field-nature"></div>
+                    <input type="email" id="email"  name="email" required autocomplete="email">
+
+                    <label>Email</label>
+                    <div class="growth-indicator">
+                        <div class="leaf-sprout"></div>
+                    </div>
+                </div>
+                    <div style="margin-top: -30px; margin-left: 10px;">
+                        <span style="color: red;" id="emailError"></span><br><br>
+                    </div>
+                </div>
+
+
+                <div>
+                    <div class="organic-field">
+                    <div class="field-nature"></div>
+                    <input type="password" id="password" name="pswd" required autocomplete="current-password">
+                    <label for="password">Password</label>
+                    <button type="button" class="nature-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                        <svg class="eye-visible" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 4c-4 0-7 3-8 6 1 3 4 6 8 6s7-3 8-6c-1-3-4-6-8-6zm0 10a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4z" fill="currentColor"/>
+                        </svg>
+                        <svg class="eye-hidden" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M3 3l14 14M8.5 8.5a2 2 0 002.83 2.83m-.83-4.83a4 4 0 014 4M10 6C6 6 3 9 2 12c.5 1.5 2 3.5 4 4.5M10 14c4 0 7-3 8-6-.5-1.5-2-3.5-4-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                </div>
+                    <div style="margin-top: -30px; margin-left: 10px;">
+                        <span id="passwordError" style="color: red;"></span><br><br>
+                    </div>
+                </div>
+
+
+                <div>
+                   <div class="organic-field">
+                    <div class="field-nature"></div>
+                    <input type="password" name="cpswd" id="password2" required autocomplete="current-password">
+                    <label for="password">Confirm Password</label>
+
+                    <button type="button" class="nature-toggle" aria-label="Toggle password visibility">
+                        <svg class="eye-visible" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 4c-4 0-7 3-8 6 1 3 4 6 8 6s7-3 8-6c-1-3-4-6-8-6zm0 10a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4z" fill="currentColor"/>
+                        </svg>
+                        <svg class="eye-hidden" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M3 3l14 14M8.5 8.5a2 2 0 002.83 2.83m-.83-4.83a4 4 0 014 4M10 6C6 6 3 9 2 12c.5 1.5 2 3.5 4 4.5M10 14c4 0 7-3 8-6-.5-1.5-2-3.5-4-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                    <div style="margin-top: -30px; margin-left: 10px;">
+                        <span style="color: red;" id="password2Error"></span><br><br>
+                    </div>
+                </div>
+
+
+
+
+                <button type="submit" class="harmony-button">
+                    <div class="button-earth"></div>
+                    <span class="button-text">Sign Up</span>
+                    <div class="button-growth">
+                        <div class="growing-circle circle-1"></div>
+                        <div class="growing-circle circle-2"></div>
+                        <div class="growing-circle circle-3"></div>
+                    </div>
+                    <div class="button-aura"></div>
+                </button>
+            </form>
+
+            <div class="balance-divider">
+                <div class="divider-branch"></div>
+                <div class="divider-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L8 8h8l-4-6zM12 22l4-6H8l4 6zM2 12l6-4v8l-6-4zM22 12l-6 4V8l6 4z" fill="currentColor" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="divider-branch"></div>
+            </div>
+
+            <div class="nurture-signup">
+                <span>Already have an account? </span>
+                <a href="{% url 'signin' %}" class="growth-link">Sign In</a>
+            </div>
+
+            <div class="harmony-success" id="successMessage">
+                <div class="success-mandala">
+                    <div class="mandala-ring ring-1"></div>
+                    <div class="mandala-ring ring-2"></div>
+                    <div class="mandala-ring ring-3"></div>
+                    <div class="mandala-center">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M8 14l6 6 12-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3>Welcome Home</h3>
+                <p>Your sanctuary awaits...</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function user_validation(){
+        username = document.getElementById("username").value;
+        email = document.getElementById("email").value;
+        password = document.getElementById("password").value;
+        c_password = document.getElementById("password2").value;
+
+        if(username === ""){
+        document.getElementById("userError").innerHTML = "Username can't be empty."
+        return false;
+        }
+
+        if(email === ""){
+        document.getElementById("emailError").innerHTML = "Email can't be empty."
+        return false;
+        }
+
+        if(password === ""){
+        document.getElementById("passwordError").innerHTML = "Password can't be empty."
+        return false;
+        }
+
+        if(c_password === ""){
+        document.getElementById("password2Error").innerHTML = "Confirm Password can't be empty."
+        return false;
+        }
+
+        if(password !== c_password){
+        document.getElementById("password2Error").innerHTML = "Password do not match."
+        return false;
+        }
+    }
+</script>
+<!--    <script src="{% static '../../shared/js/form-utils.js' %}"></script>-->
+<!--    <script src="{% static 'login/js/script.js' %}"></script>-->
+</body>
+</html>
