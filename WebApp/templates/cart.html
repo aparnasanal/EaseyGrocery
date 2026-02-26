@@ -260,28 +260,30 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {% for d in data %}
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="{% static 'web/img/cart/cart-1.jpg' %}" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img src="{{d.Product_Image.url}}" alt="" height="70px" width="80px" >
+                                        <h5>{{d.Product_Name}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                        {{d.Price}}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <input type="text" value="{{d.Quantity}}">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        {{d.Total_Price}}
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
                                     </td>
                                 </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -310,8 +312,9 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Subtotal <span>Rs. {{sub_total}}</span></li>
+                            <li>Delivery <span>Rs. {{delivery}}</span></li>
+                            <li>Total <span>Rs. {{grand_total}}</span></li>
                         </ul>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>

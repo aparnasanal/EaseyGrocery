@@ -104,4 +104,36 @@ def user_logout(request):
 #___________________________________________________________________________________________________________
 
 def cart(request):
-    return render(request, "cart.html")
+    data = CartDb.objects.filter(Username=request.session['Username'])
+    sub_total = 0
+    delivery = 0
+    grand_total = 0
+
+    for i in data:
+        sub_total += i.Total_Price
+        if sub_total > 500:
+            delivery = 0
+        elif sub_total > 400:
+            delivery = 50
+        else:
+            delivery = 100
+        grand_total = sub_total + delivery
+
+    return render(request, "cart.html",
+                  {"data" : data, "sub_total" : sub_total,
+                           "delivery" : delivery, "grand_total" : grand_total})
+
+def add_to_cart(request):
+    if request.method == "POST":
+        uname = request.POST.get('uname')
+        product = request.POST.get('pname')
+        price = request.POST.get('price')
+        quantity = request.POST.get('quantity')
+        total = request.POST.get('total')
+        pro = ProductDb.objects.filter(ProductName=product).first()
+        img = pro.ProductImage if pro else None
+        obj = CartDb(Username=uname, Product_Name=product, Price=price,
+                     Quantity=quantity, Total_Price=total, Product_Image=img)
+        obj.save()
+
+    return redirect(cart)

@@ -19,3 +19,4 @@ class CartDb(models.Model):
     Price = models.FloatField()
     Quantity = models.IntegerField()
     Total_Price = models.FloatField()
+    Product_Image = models.ImageField(upload_to="Cart Images", null=True, blank=True)

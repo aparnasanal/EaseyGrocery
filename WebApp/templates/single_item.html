@@ -282,14 +282,16 @@
                         <div class="quantity">
                             {% if request.session.Username %}
                             <div>
-                                <form>
-                                    <input type="number" min="1" placeholder="Quantity" class="pro-qty" id="quantity" style="border: solid 1px green;">
-                                    <input type="hidden" id="price" value="{{single.Price}}" class="pro-qty">
-                                    <input type="text" id="totalprice" placeholder="Total Price" class="pro-qty" style="border: solid 1px green;">
-                                    <input type="hidden" value="{{single.ProductName}}">
-                                    <input type="hidden" value="{{request.session.Username}}">
+                                <form method="post" action="{% url 'add_to_cart' %}" enctype="multipart/form-data">
+                                    {% csrf_token%}
+                                    <input type="number" min="1" placeholder="Quantity" name="quantity" class="pro-qty" id="quantity" style="border: solid 1px green;">
+                                    <input type="hidden" id="price" value="{{single.Price}}" name="price" class="pro-qty">
+                                    <input type="text" id="totalprice" placeholder="Total Price" name="total" class="pro-qty" style="border: solid 1px green;"><br>
+                                    <input type="hidden" value="{{single.ProductName}}" name="pname">
+                                    <input type="hidden" value="{{request.session.Username}}" name="uname">
+                                    <button type="submit" class="primary-btn mt-3 mb-3" style="border: none; border-radius: 10px;">ADD TO CART</button>
+
                                 </form>
-                                <a href="#" class="primary-btn mt-3">ADD TO CART</a>
                                 <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             </div>
                             {% else %}

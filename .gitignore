@@ -13,6 +13,7 @@ env/
 *.log
 *.pot
 *.pyc
+
 db.sqlite3       # optional, if local DB should not be committed
 media/          # if you store uploaded files locally
 
