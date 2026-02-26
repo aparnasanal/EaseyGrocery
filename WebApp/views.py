@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from AdminApp.models import *
 from WebApp.models import *
+from django.contrib import messages
 
 # Create your views here.
 
@@ -89,7 +90,9 @@ def user_login(request):
             request.session['Password'] = pswd
             return redirect(home_page)
         else:
+            messages.error(request, "Invalid Username or Password")
             return redirect(signin)
+
     else:
         return redirect(signin)
 

@@ -73,6 +73,7 @@
 	<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="{% static 'admin_login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'admin_login/vendor/animsition/js/animsition.min.js' %}"></script>
@@ -88,6 +89,20 @@
 	<script src="{% static 'admin_login/vendor/countdowntime/countdowntime.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'admin_login/js/main.js' %}"></script>
+
+    {% if messages %}
+        {% for msg in messages %}
+            {% if msg.tags == "success" %}
+                <script>
+                    swal('{{msg}}', '', 'success')
+                </script>
+            {% elif msg.tags == "error" %}
+                <script>
+                    swal('{{msg}}', '', 'error')
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
 </body>
 </html>

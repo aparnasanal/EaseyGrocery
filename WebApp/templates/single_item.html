@@ -283,11 +283,13 @@
                             {% if request.session.Username %}
                             <div>
                                 <form>
-                                    <input type="number" min="1" class="pro-qty" id="quantity">
-                                    <input type="text" id="price" value="{{single.Price}}" class="pro-qty">
-                                    <input type="text" id="totalprice" placeholder="Total Price" class="pro-qty">
+                                    <input type="number" min="1" placeholder="Quantity" class="pro-qty" id="quantity" style="border: solid 1px green;">
+                                    <input type="hidden" id="price" value="{{single.Price}}" class="pro-qty">
+                                    <input type="text" id="totalprice" placeholder="Total Price" class="pro-qty" style="border: solid 1px green;">
+                                    <input type="hidden" value="{{single.ProductName}}">
+                                    <input type="hidden" value="{{request.session.Username}}">
                                 </form>
-                                <a href="#" class="primary-btn">ADD TO CART</a>
+                                <a href="#" class="primary-btn mt-3">ADD TO CART</a>
                                 <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             </div>
                             {% else %}

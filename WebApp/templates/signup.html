@@ -160,6 +160,19 @@
         password = document.getElementById("password").value;
         c_password = document.getElementById("password2").value;
 
+        // strong pass pattern
+
+        pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{6,}$/;
+
+        // clear errors
+
+        document.getElementById("userError").innerHTML = "";
+        document.getElementById("emailError").innerHTML = "";
+        document.getElementById("passwordError").innerHTML = "";
+        document.getElementById("password2Error").innerHTML = "";
+
+
+
         if(username === ""){
         document.getElementById("userError").innerHTML = "Username can't be empty."
         return false;
@@ -172,6 +185,11 @@
 
         if(password === ""){
         document.getElementById("passwordError").innerHTML = "Password can't be empty."
+        return false;
+        }
+
+        if(!pattern.test(password)){
+        document.getElementById("passwordError").innerHTML = "Password must contain atleast 6 characters, 1 digit, 1 uppercase, 1 special character.";
         return false;
         }
 

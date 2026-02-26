@@ -155,6 +155,7 @@ def admin_login(request):
             else:
                 return redirect(admin_loginpage)
         else:
+            messages.error(request, "Invalid username or password")
             return redirect(admin_loginpage)
 
 

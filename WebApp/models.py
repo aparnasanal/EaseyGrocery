@@ -12,3 +12,10 @@ class SignupDb(models.Model):
     Email = models.EmailField(max_length=100)
     Password = models.CharField(max_length=100)
     C_Password = models.CharField(max_length=100)
+
+class CartDb(models.Model):
+    Username = models.CharField(max_length=100)
+    Product_Name = models.CharField(max_length=100)
+    Price = models.FloatField()
+    Quantity = models.IntegerField()
+    Total_Price = models.FloatField()
