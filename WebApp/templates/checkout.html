@@ -31,22 +31,22 @@
         <div class="loader"></div>
     </div>
 
-  <!-- Humberger Begin -->
+    <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="{% static 'web/img/logo.png' %}" alt=""></a>
+            <a href="#"><img src="img/logo.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
-                <img src="{% static 'web/img/language.png' %}" alt="">
+                <img src="img/language.png" alt="">
                 <div>English</div>
                 <span class="arrow_carrot-down"></span>
                 <ul>
@@ -55,14 +55,14 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="{% url 'signin' %}"><i class="fa fa-user"></i> Login</a>
+                <a href="#"><i class="fa fa-user"></i> Login</a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">About</a></li>
-                <li><a href="#">Categories</a>
+                <li><a href="./shop-grid.html">Shop</a></li>
+                <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
                         <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -70,8 +70,7 @@
                         <li><a href="./blog-details.html">Blog Details</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">Products</a></li>
-                <li><a href="./blog.html">Services</a></li>
+                <li><a href="./blog.html">Blog</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -84,8 +83,8 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i>admin@easygrocery.com</li>
-                <li>Free Shipping for all Orders above Rs. 500</li>
+                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li>Free Shipping for all Order of $99</li>
             </ul>
         </div>
     </div>
@@ -96,41 +95,34 @@
         <div class="header__top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i>admin@easygrocery.com</li>
-                                <li>Free Shipping for all Orders above Rs. 500</li>
+                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li>Free Shipping for all Order of $99</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6">
                         <div class="header__top__right">
-<!--                            <div class="header__top__right__social">-->
-<!--                                <a href="#"><i class="fa fa-facebook"></i></a>-->
-<!--                                <a href="#"><i class="fa fa-twitter"></i></a>-->
-<!--                                <a href="#"><i class="fa fa-linkedin"></i></a>-->
-<!--                                <a href="#"><i class="fa fa-pinterest-p"></i></a>-->
-<!--                            </div>-->
-<!--                            <div class="header__top__right__language">-->
-<!--                                <img src="{% static 'web/img/language.png' %}" alt="">-->
-<!--                                <div>English</div>-->
-<!--                                <span class="arrow_carrot-down"></span>-->
-<!--                                <ul>-->
-<!--                                    <li><a href="#">Spanis</a></li>-->
-<!--                                    <li><a href="#">English</a></li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-                            {% if request.session.Username %}
-                            <div class="header__top__right__auth">
-                                <a href="{% url 'user_logout' %}"><i class="fa fa-user"></i> {{request.session.Username}}/Logout</a>
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
-                            {% else %}
-                            <div class="header__top__right__auth">
-                                <a href="{% url 'signin' %}"><i class="fa fa-user"></i> Login</a>
+                            <div class="header__top__right__language">
+                                <img src="img/language.png" alt="">
+                                <div>English</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
                             </div>
-                            {% endif %}
-
+                            <div class="header__top__right__auth">
+                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,33 +130,36 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                        <a href="./index.html"><img src="{% static 'web/img/logoeg.png' %}" alt="" height="150px"></a>
-
-                            <li><a href="{% url 'home' %}">Home</a></li>
-                            <li><a href="{% url 'about' %}">About</a></li>
-                            <li><a href="#">Categories</a>
+                            <li><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="./shop-grid.html">Shop</a></li>
+                            <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    {% for i in categories %}
-                                    <li><a href="{% url 'filtered_products' cat_name=i.CategoryName %}">{{i.CategoryName}}</a></li>
-                                    {% endfor %}
+                                    <li><a href="./shop-details.html">Shop Details</a></li>
+                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                    <li><a href="./checkout.html">Check Out</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{% url 'our_products' %}">Products</a></li>
-                            <li class="active"><a href="{% url 'services' %}">Services</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
-
-                            {% if request.session.Username %}
-                            <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag"></i> <span>{{cart}}</span></a></li>
-                            {% endif %}
-
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="./contact.html">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -228,107 +223,156 @@
     </section>
     <!-- Hero Section End -->
 
-<!--    &lt;!&ndash; Breadcrumb Section Begin &ndash;&gt;-->
-<!--    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-12 text-center">-->
-<!--                    <div class="breadcrumb__text">-->
-<!--                        <h2>Contact Us</h2>-->
-<!--                        <div class="breadcrumb__option">-->
-<!--                            <a href="./index.html">Home</a>-->
-<!--                            <span>Contact Us</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--    &lt;!&ndash; Breadcrumb Section End &ndash;&gt;-->
-
-    <!-- Contact Section Begin -->
-    <section class="contact spad">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
-            <div class="section-title product__discount__title">
-                        <h2>Services</h2>
-                    </div>
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center mt-5 mb-5">
-                    <div class="contact__widget">
-                        <span class="icon_clock_alt"></span>
-                        <h4>Fast Delivery</h4>
-                        <p>Delivery within 10 minutes</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center mt-5 mb-5">
-                    <div class="contact__widget">
-                        <span class="icon_like"></span>
-                        <h4>Fresh & Quality Assured Products</h4>
-                        <p>Quality-checked groceries</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center mt-5 mb-5">
-                    <div class="contact__widget">
-                        <span class="icon_creditcard"></span>
-                        <h4>Multiple Payment Options</h4>
-                        <p>UPI, Debit/Credit Cards, Cash on Delivery, Secure online payments</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center mt-5 mb-5">
-                    <div class="contact__widget">
-                        <span class="icon_refresh"></span>
-                        <h4>Quick Replacement</h4>
-                        <p>Instant Replacement for Expired Items</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                    <div class="contact__widget">
-                        <span class="icon_shield"></span>
-                        <h4>Contactless Delivery</h4>
-                        <p>Safe and hygienic doorstep drop-off.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
-                    <div class="contact__widget">
-                        <span class="icon_headphones"></span>
-                        <h4>24/7 Customer Support</h4>
-                        <p>We’re here to help anytime you need assistance.</p>
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Checkout</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">Home</a>
+                            <span>Checkout</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Contact Section End -->
+    <!-- Breadcrumb Section End -->
 
-
-    <!-- Contact Form Begin -->
-    <div class="contact-form spad">
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="contact__form__title">
-                        <h2>Leave Message</h2>
-                    </div>
+                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
+                    </h6>
                 </div>
             </div>
-            <form method="post" action="{% url 'save_message' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Your name" name="name">
+            <div class="checkout__form">
+                <h4>Billing Details</h4>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Fist Name<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Country<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" placeholder="Street Address" class="checkout__input__add">
+                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Country/State<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Postcode / ZIP<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="acc">
+                                    Create an account?
+                                    <input type="checkbox" id="acc">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <p>Create an account by entering the information below. If you are a returning customer
+                                please login at the top of the page</p>
+                            <div class="checkout__input">
+                                <p>Account Password<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="diff-acc">
+                                    Ship to a different address?
+                                    <input type="checkbox" id="diff-acc">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Order notes<span>*</span></p>
+                                <input type="text"
+                                    placeholder="Notes about your order, e.g. special notes for delivery.">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4>Your Order</h4>
+                                <div class="checkout__order__products">Products <span>Total</span></div>
+                                <ul>
+                                    <li>Vegetable’s Package <span>$75.99</span></li>
+                                    <li>Fresh Vegetable <span>$151.99</span></li>
+                                    <li>Organic Bananas <span>$53.99</span></li>
+                                </ul>
+                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
+                                <div class="checkout__order__total">Total <span>$750.99</span></div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="acc-or">
+                                        Create an account?
+                                        <input type="checkbox" id="acc-or">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua.</p>
+                                <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        Check Payment
+                                        <input type="checkbox" id="payment">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        Paypal
+                                        <input type="checkbox" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Your Email" name="email">
-                    </div>
-                    <div class="col-lg-12 text-center">
-                        <textarea placeholder="Your message" name="message"></textarea>
-                        <button type="submit" class="site-btn">SEND MESSAGE</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-    <!-- Contact Form End -->
+    </section>
+    <!-- Checkout Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer spad">

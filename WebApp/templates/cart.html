@@ -143,8 +143,8 @@
                         <ul>
                         <a href="./index.html"><img src="{% static 'web/img/logoeg.png' %}" alt="" height="150px"></a>
 
-                            <li><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">About</a></li>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
                             <li><a href="#">Categories</a>
                                 <ul class="header__menu__dropdown">
                                     {% for i in categories %}
@@ -152,10 +152,12 @@
                                     {% endfor %}
                                 </ul>
                             </li>
-                            <li class="active"><a href="{% url 'our_products' %}">Products</a></li>
+                            <li><a href="{% url 'our_products' %}">Products</a></li>
                             <li><a href="{% url 'services' %}">Services</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
-                            <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            {% if request.session.Username %}
+                            <li class="active"><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag "></i> <span>{{cart}}</span></a></li>
+                            {% endif %}
 
                         </ul>
                     </nav>
@@ -280,7 +282,8 @@
                                         {{d.Total_Price}}
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <a href="{% url 'delete_items' item_id=d.id %}"><span class="icon_close"></span></a>
+
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -316,7 +319,7 @@
                             <li>Delivery <span>Rs. {{delivery}}</span></li>
                             <li>Total <span>Rs. {{grand_total}}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{% url 'checkout' %}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>

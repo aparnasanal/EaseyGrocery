@@ -144,7 +144,7 @@
                         <a href="./index.html"><img src="{% static 'web/img/logoeg.png' %}" alt="" height="150px"></a>
 
                             <li><a href="{% url 'home' %}">Home</a></li>
-                            <li><a href="./shop-grid.html">About</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
                             <li><a href="#">Categories</a>
                                 <ul class="header__menu__dropdown">
                                     {% for i in categories %}
@@ -155,7 +155,9 @@
                             <li><a href="{% url 'our_products' %}">Products</a></li>
                             <li><a href="{% url 'services' %}">Services</a></li>
                             <li class="active"><a href="{% url 'contact' %}">Contact</a></li>
-                            <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            {% if request.session.Username %}
+                            <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag"></i> <span>{{cart}}</span></a></li>
+                            {% endif %}
 
                         </ul>
                     </nav>

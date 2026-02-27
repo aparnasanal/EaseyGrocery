@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
+from unicodedata import category
+
 from AdminApp.models import *
+from AdminApp.views import delete_products
 from WebApp.models import *
 from django.contrib import messages
 
@@ -8,24 +11,44 @@ from django.contrib import messages
 def home_page(request):
     categories = CategoryDb.objects.all()
     latest_products = ProductDb.objects.order_by('-id')[:8]
+    uname=request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
+
     return render(request, "home.html",
                   {"categories" : categories,
-                            "latest_products" : latest_products})
+                            "latest_products" : latest_products,
+                            "cart" : cart_count
+                   })
+
 def all_products(request):
     categories = CategoryDb.objects.all()
     products = ProductDb.objects.all()
     latest_products = ProductDb.objects.order_by('-id')[:3]
     latest_products1 = ProductDb.objects.order_by('-id')[4:7]
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
     return render(request, "all_products.html",
                   {"categories" : categories,
                             "products" : products,
                             "latest_products" : latest_products,
-                            "latest_products1" : latest_products1})
+                            "latest_products1" : latest_products1,
+                            "cart" : cart_count})
 
 def filtered_products(request, cat_name):
     products_filtered = ProductDb.objects.filter(Category_Name=cat_name)
+    categories = CategoryDb.objects.all()
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
     return render(request, "filtered_products.html",
-                  {"products" : products_filtered})
+                  {"products" : products_filtered,
+                            "categories" : categories,
+                            "cart" : cart_count})
 
 def single_item(request, product_id):
     single_item = ProductDb.objects.get(id=product_id)
@@ -35,13 +58,34 @@ def single_item(request, product_id):
 
 #_______________________________________________________________________________________________________
 
+def about(request):
+    categories = CategoryDb.objects.all()
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
+    return render(request, "about.html",
+                  {"cart": cart_count,
+                   "categories": categories})
 def services(request):
-    return render(request, "services.html")
+    categories = CategoryDb.objects.all()
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
+    return render(request, "services.html",
+                  {"cart" : cart_count,
+                            "categories" : categories})
 
 def contact(request):
     categories = CategoryDb.objects.all()
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
     return render(request, "contact.html",
-                  {"categories" : categories})
+                  {"categories" : categories,
+                            "cart" : cart_count})
 
 def save_message(request):
     if request.method=="POST":
@@ -105,6 +149,11 @@ def user_logout(request):
 
 def cart(request):
     data = CartDb.objects.filter(Username=request.session['Username'])
+    categories = CategoryDb.objects.all()
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
     sub_total = 0
     delivery = 0
     grand_total = 0
@@ -121,7 +170,9 @@ def cart(request):
 
     return render(request, "cart.html",
                   {"data" : data, "sub_total" : sub_total,
-                           "delivery" : delivery, "grand_total" : grand_total})
+                           "delivery" : delivery, "grand_total" : grand_total,
+                            "cart" : cart_count,
+                            "categories" : categories})
 
 def add_to_cart(request):
     if request.method == "POST":
@@ -137,3 +188,14 @@ def add_to_cart(request):
         obj.save()
 
     return redirect(cart)
+
+def checkout(request):
+    return render(request, "checkout.html")
+
+def delete_items(request, item_id):
+    items = CartDb.objects.filter(id=item_id)
+    items.delete()
+    return redirect(cart)
+
+def payment_page(request):
+    return render(request, "payment.html")

@@ -11,7 +11,10 @@ from django.contrib import messages
 # Create your views here.
 
 def dashboard(request):
-    return render(request, "dashboard.html")
+    categories = CategoryDb.objects.count()
+    products = ProductDb.objects.count()
+    return render(request, "dashboard.html",
+                  {"cat" : categories, "pro" : products})
 
 def contact_details(request):
     contact = ContactDb.objects.all()
