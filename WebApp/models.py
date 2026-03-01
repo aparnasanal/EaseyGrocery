@@ -20,3 +20,15 @@ class CartDb(models.Model):
     Quantity = models.IntegerField()
     Total_Price = models.FloatField()
     Product_Image = models.ImageField(upload_to="Cart Images", null=True, blank=True)
+
+class OrderDb(models.Model):
+    FirstName = models.CharField(max_length=100)
+    LastName = models.CharField(max_length=100)
+    State = models.CharField(max_length=100)
+    City = models.CharField(max_length=100)
+    Address = models.TextField()
+    Postcode = models.IntegerField()
+    Email = models.EmailField(max_length=100)
+    Mobile = models.IntegerField()
+    GrandTotal = models.FloatField(null=True, blank=True)
+

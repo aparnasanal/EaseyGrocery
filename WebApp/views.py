@@ -190,7 +190,45 @@ def add_to_cart(request):
     return redirect(cart)
 
 def checkout(request):
-    return render(request, "checkout.html")
+    if request.method=="POST":
+        first = request.POST.get('first')
+        last = request.POST.get('last ')
+        state = request.POST.get('state')
+        city = request.POST.get('city')
+        address = request.POST.get('address')
+        postcode = request.POST.get('postcode')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        total = request.POST.get('total')
+
+        obj = OrderDb(FirstName=first, LastName=last, State=state, City=city, Address=address,
+                      Postcode=postcode, Email=email, Mobile=mobile, GrandTotal=total)
+        obj.save()
+
+        return redirect(payment_page)
+
+    data = CartDb.objects.filter(Username=request.session['Username'])
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
+    sub_total = 0
+    delivery = 0
+    grand_total = 0
+
+    for i in data:
+        sub_total += i.Total_Price
+        if sub_total > 500:
+            delivery = 0
+        elif sub_total > 400:
+            delivery = 50
+        else:
+            delivery = 100
+        grand_total = sub_total + delivery
+    return render(request, "checkout.html",
+                  {"data" : data, "sub_total" : sub_total,
+                            "delivery" : delivery, "grand_total" : grand_total,
+                            "cart_count" : cart_count})
 
 def delete_items(request, item_id):
     items = CartDb.objects.filter(id=item_id)
@@ -199,3 +237,4 @@ def delete_items(request, item_id):
 
 def payment_page(request):
     return render(request, "payment.html")
+
