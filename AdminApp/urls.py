@@ -19,7 +19,7 @@ urlpatterns = [
     path('update_products/<int:pro_id>/', views.update_products, name="update_products"),
     path('delete_products/<int:pro_id>/', views.delete_products, name="delete_products"),
 
-    path('admin_loginpage/', views.admin_loginpage, name="admin_loginpage"),
+    path('', views.admin_loginpage, name="admin_loginpage"),
     path('admin_login/', views.admin_login, name="admin_login"),
     path('admin_logout/', views.admin_logout, name="admin_logout"),
 ]

@@ -95,6 +95,7 @@ def save_message(request):
 
         obj = ContactDb(Name=name, Email=email, Message=message)
         obj.save()
+        messages.success(request, "Message Sent")
 
         return redirect(contact)
 
@@ -115,13 +116,14 @@ def save_user(request):
 
         obj = SignupDb(Username=u_name, Email=email, Password=pswd, C_Password=c_pswd)
         if SignupDb.objects.filter(Username=u_name).exists():
-            print("Username Already Exists")
+            messages.error(request, "Username Already Exists")
             return redirect(signup)
         elif SignupDb.objects.filter(Email=email).exists():
-            print("Email Already Exists")
+            messages.error(request, "Email Already Exists")
             return redirect(signup)
         else:
             obj.save()
+            messages.success(request, "Registered Successfully")
             return redirect(signin)
 
 def user_login(request):
@@ -238,5 +240,12 @@ def delete_items(request, item_id):
     return redirect(cart)
 
 def payment_page(request):
-    return render(request, "payment.html")
+    categories = CategoryDb.objects.all()
+    uname = request.session.get('Username')
+    cart_count = 0
+    if uname:
+        cart_count = CartDb.objects.filter(Username=uname).count()
+    return render(request, "payment.html",
+                  {"categories" : categories,
+                            "cart_count" : cart_count})
 
