@@ -207,6 +207,7 @@ def checkout(request):
 
         return redirect(payment_page)
 
+    categories = CategoryDb.objects.all()
     data = CartDb.objects.filter(Username=request.session['Username'])
     uname = request.session.get('Username')
     cart_count = 0
@@ -228,7 +229,8 @@ def checkout(request):
     return render(request, "checkout.html",
                   {"data" : data, "sub_total" : sub_total,
                             "delivery" : delivery, "grand_total" : grand_total,
-                            "cart_count" : cart_count})
+                            "cart_count" : cart_count,
+                            "categories" : categories})
 
 def delete_items(request, item_id):
     items = CartDb.objects.filter(id=item_id)
