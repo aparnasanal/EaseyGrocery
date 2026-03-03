@@ -6,6 +6,8 @@ from AdminApp.views import delete_products
 from WebApp.models import *
 from django.contrib import messages
 
+import razorpay
+
 # Create your views here.
 
 def home_page(request):
@@ -194,7 +196,7 @@ def add_to_cart(request):
 def checkout(request):
     if request.method=="POST":
         first = request.POST.get('first')
-        last = request.POST.get('last ')
+        last = request.POST.get('last')
         state = request.POST.get('state')
         city = request.POST.get('city')
         address = request.POST.get('address')
@@ -245,7 +247,21 @@ def payment_page(request):
     cart_count = 0
     if uname:
         cart_count = CartDb.objects.filter(Username=uname).count()
+
+    # payment details
+    # get latest order from OrderDb
+    customer = OrderDb.objects.order_by('-id').first()
+    pay = customer.GrandTotal
+    amount = int(pay*100)
+    pay_str = str(amount)
+    if request.method == "POST":
+        order_currency = "INR"
+        client = razorpay.Client(auth=('rzp_test_0ib0jPwwZ7I1lT', 'VjHNO5zKeKxz8PYe7VnzwxMR'))
+        payment = client.order.create({"amount" : amount, "currency" : order_currency})
+
+
     return render(request, "payment.html",
                   {"categories" : categories,
-                            "cart_count" : cart_count})
+                            "cart_count" : cart_count,
+                            "pay_str" : pay_str})
 

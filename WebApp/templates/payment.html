@@ -192,13 +192,15 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-
-
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
-        <div class="container text-center">
-            <button class="site-btn" style="background-color: green; text-shadow: 0px 0px 5px black;">Proceed To Pay</button>
+        <form method="post">
+            {% csrf_token %}
+            <div class="container text-center">
+            <button class="site-btn" type="submit" style="background-color: green; text-shadow: 0px 0px 5px black;">Proceed To Pay</button>
         </div>
+    </form>
+
     </section>
     <!-- Checkout Section End -->
 
@@ -260,14 +262,24 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="{% static 'web/js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'web/js/jquery.nice-select.min.js' %}"></script>
-    <script src="{% static 'web/js/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'web/js/jquery.slicknav.js' %}"></script>
-    <script src="{% static 'web/js/mixitup.min.js' %}"></script>
-    <script src="{% static 'web/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'web/js/main.js' %}"></script>
+      <script src="{% static 'Web/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'Web/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Web/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'Web/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'Web/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'Web/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'Web/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'Web/js/main.js' %}"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key = "rzp_test_0ib0jPwwZ7I1lT"
+    data-amount = "{{pay_str}}"
+    data-currency = "INR"
+    data-order_id = "{{payment.order_id}}"
+    data-name = "EasyGrocery"
+    data-description = "EasyGrocery Online Purchase"
+    data-prefil.name = "EasyGrocery"
+    data-theme.color = "#228B22">
+</script>
 
 
 
