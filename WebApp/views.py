@@ -193,6 +193,21 @@ def add_to_cart(request):
 
     return redirect(cart)
 
+def update_cart_qty(request, cart_id):
+    if request.method=="POST":
+        action = request.POST.get('action')
+        item = CartDb.objects.get(id=cart_id)
+
+        if action=="plus":
+            item.Quantity += 1
+        elif action=="minus":
+            if item.Quantity > 1:
+                item.Quantity -= 1
+
+        item.Total_Price = item.Quantity * item.Price
+        item.save()
+    return redirect(cart)
+
 def checkout(request):
     if request.method=="POST":
         first = request.POST.get('first')
